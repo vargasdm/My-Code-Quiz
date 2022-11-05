@@ -180,11 +180,9 @@ function startGame() {
     
     function saveLastScore() {
         // Save related form data as an object
-        var playerId = initials.value;
-        var newScore = { initial: initials.value, score: 34 }
+        var newScore = { initial: initials.value, score: scoreNum }
         // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
         localStorage.setItem("newScore", JSON.stringify(newScore));
-        console.log(playerId);
     }
 
     function highScoresDisplay() {
