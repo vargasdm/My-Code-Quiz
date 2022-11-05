@@ -4,8 +4,10 @@ var gameOverScreen = document.querySelector("#gameOver")
 var questionScreen = document.querySelector("#askQuestion")
 var initials = document.querySelector("#initials");
 var saveBtn = document.querySelector("#saveBtn");
-var secondsLeft = 30;
 var score = document.querySelector("#score");
+var highscores = document.querySelector("#highscores");
+var secondsLeft = 10;
+
 var i = 0;
 
 // question array that will be moved through ass you answer them
@@ -101,8 +103,13 @@ var nextQuestion = document.querySelector("#questionSlide");
     options.children[2].textContent = questions[i].options[2];
     options.children[3].textContent = questions[i].options[3];
 
-    startBtn.addEventListener("click", function(event) {
-        if (event.target.value === questions[i].answer) {
+    options.children[0].onclick = optionClicked;
+    options.children[1].onclick = optionClicked;
+    options.children[2].onclick = optionClicked;
+    options.children[3].onclick = optionClicked;
+
+    function optionClicked() {
+        if (options.children.value === questions[i].answer) {
             score.textContent = score + 10;
             i++;
             askQuestion();
@@ -111,7 +118,7 @@ var nextQuestion = document.querySelector("#questionSlide");
             askQuestion();
         }
       
-    })
+    }
 }   
 
 
@@ -146,11 +153,12 @@ var nextQuestion = document.querySelector("#questionSlide");
     // needs to store name data and score in local memory
 saveBtn.addEventListener("click", function(event) {
     event.preventDefault();
-    saveLastGrade();
+    saveLastScore();
+    highScoresDisplay();
 
     });
 
-    function saveLastGrade() {
+    function saveLastScore() {
         // Save related form data as an object
         var playerId = initials.value;
         
@@ -187,4 +195,8 @@ startBtn.addEventListener("click", startGame);
 // need a function for when the highscore button is clicked
     // it will need to grab the previous highscores and naems from the local storage and present them on the page
     // need to hide other windows and just display past highscores
+// function highScoresDisplay() {
+//     var highscores = JSON.parse(localStorage.getItem("playerId"));
+//     highscores.textContent = playerId.value;
+// }
 
