@@ -155,4 +155,5 @@ startBtn.addEventListener("click", startGame);
 
 // need a function for when the highscore button is clicked
     // it will need to grab the previous highscores and naems from the local storage and present them on the page
+    // need to hide other windows and just display past highscores
 
