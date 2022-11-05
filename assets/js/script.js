@@ -6,8 +6,10 @@ var initials = document.querySelector("#initials");
 var saveBtn = document.querySelector("#saveBtn");
 var score = document.querySelector("#score");
 var highscores = document.querySelector("#highscores");
+var instructions = document.querySelector("#instructions")
 var secondsLeft = 50;
 var i = 0;
+var scoreNum = 0;
 
 
 // question array that will be moved through ass you answer them
@@ -69,11 +71,12 @@ var questions = [
 //  need to hide game over screeen until end of game
 gameOverScreen.setAttribute("style", "display: none");
 questionScreen.setAttribute("style", "display: none");
+instructions.textContent = "instructions: Click Sart Game button to begin. For every question you get correct, you get 10 points. For every wrong answer, 5 seconds are deducted from the timer."
 
 function startGame() {
     // need to start timer when start game function is started
     setTime();
-
+    instructions.setAttribute("style", "display: none");
     // set score = 0
     score.textContent = "Score: " + 0;
 
@@ -93,13 +96,7 @@ function startGame() {
     // needs to render "correct" or "incorrect" you after you click an answer
     // the sstring will be rendered at the bottom or under element that holds the answeers 
     // create a function for this ??
-    function quizEnd() {
-        gameOverScreen.setAttribute("style", "display: block");
-        // hides timer
-        timeEl.setAttribute("style", "display: none");
-        // hides question screen
-        questionScreen.setAttribute("style", "display: none");
-    }
+  
 
     askQuestion()
     function askQuestion() {
@@ -121,10 +118,12 @@ function startGame() {
     }
 
     function optionClicked(event) {
-        if (event.value === questions[i].answer) {
-            score = score + 10;
-            score.textContent = score;
+        console.log(event.target.textContent)
+        if (event.target.textContent === questions[i].answer) {
+            scoreNum = scoreNum + 10;
+            score.textContent = "Score: " + scoreNum;
             i++;
+
         } else {
             i++
             secondsLeft = secondsLeft - 5;
@@ -163,6 +162,14 @@ function startGame() {
         }, 1000);
     }
 
+    function quizEnd() {
+        gameOverScreen.setAttribute("style", "display: block");
+        score.textContent = "Final Score: " + scoreNum;
+        // hides timer1
+        timeEl.setAttribute("style", "display: none");
+        // hides question screen
+        questionScreen.setAttribute("style", "display: none");
+    }
 
     // need an event listener for game over screeen that when you submit your info
     // needs to store name data and score in local memory
