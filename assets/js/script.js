@@ -7,6 +7,7 @@ var saveBtn = document.querySelector("#saveBtn");
 var score = document.querySelector("#score");
 var highscores = document.querySelector("#highscores");
 var instructions = document.querySelector("#instructions")
+var finalScore = document.querySelector("#finalScore")
 var secondsLeft = 50;
 var i = 0;
 var scoreNum = 0;
@@ -72,7 +73,7 @@ var questions = [
 gameOverScreen.setAttribute("style", "display: none");
 questionScreen.setAttribute("style", "display: none");
 instructions.textContent = "instructions: Click Sart Game button to begin. For every question you get correct, you get 10 points. For every wrong answer, 5 seconds are deducted from the timer."
-
+ 
 function startGame() {
     // need to start timer when start game function is started
     setTime();
@@ -164,11 +165,13 @@ function startGame() {
 
     function quizEnd() {
         gameOverScreen.setAttribute("style", "display: block");
-        score.textContent = "Final Score: " + scoreNum;
+        finalScore.textContent = "Final Score: " + scoreNum;
         // hides timer1
         timeEl.setAttribute("style", "display: none");
         // hides question screen
         questionScreen.setAttribute("style", "display: none");
+
+        
     }
 
     // need an event listener for game over screeen that when you submit your info
@@ -190,6 +193,10 @@ function startGame() {
         console.log(playerId);
     }
 
+    function highScoresDisplay() {
+        var highscores = JSON.parse(localStorage.getItem("playerId"));
+        highscores.textContent = playerId.value;
+    }
 
 }
 
@@ -217,10 +224,7 @@ startBtn.addEventListener("click", startGame);
 // need a function for when the highscore button is clicked
     // it will need to grab the previous highscores and naems from the local storage and present them on the page
     // need to hide other windows and just display past highscores
-// function highScoresDisplay() {
-//     var highscores = JSON.parse(localStorage.getItem("playerId"));
-//     highscores.textContent = playerId.value;
-// }
+
 
 // optionsEl.onclick = questionClick
 
