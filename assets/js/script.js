@@ -5,7 +5,7 @@ var questionScreen = document.querySelector("#askQuestion")
 var initials = document.querySelector("#initials");
 var saveBtn = document.querySelector("#saveBtn");
 var score = document.querySelector("#score");
-var highscores = document.querySelector("#highscores");
+var highscores = document.querySelector("#oldScores")
 var instructions = document.querySelector("#instructions")
 var finalScore = document.querySelector("#finalScore")
 var secondsLeft = 50;
@@ -167,7 +167,7 @@ function startGame() {
         gameOverScreen.setAttribute("style", "display: block");
         finalScore.textContent = "Final Score: " + scoreNum;
         // hides timer1
-        timeEl.setAttribute("style", "display: none");
+        timeEl.setAttribute("style", "display: none");  
         // hides question screen
         questionScreen.setAttribute("style", "display: none");
 
@@ -176,13 +176,7 @@ function startGame() {
 
     // need an event listener for game over screeen that when you submit your info
     // needs to store name data and score in local memory
-    saveBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-        saveLastScore();
-        highScoresDisplay();
-
-    });
-
+    
     function saveLastScore() {
         // Save related form data as an object
         var playerId = initials.value;
@@ -197,6 +191,13 @@ function startGame() {
         var highscores = JSON.parse(localStorage.getItem("playerId"));
         highscores.textContent = playerId.value;
     }
+
+    saveBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        saveLastScore();
+        highScoresDisplay();
+
+    });
 
 }
 
