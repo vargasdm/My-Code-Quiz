@@ -7,7 +7,8 @@ var saveBtn = document.querySelector("#saveBtn");
 var score = document.querySelector("#score");
 var highscores = document.querySelector("#highscores"); 
 var secondsLeft = 10;
-var i = 0;
+
+
 
 // question array that will be moved through ass you answer them
 var questions = [
@@ -63,7 +64,16 @@ var questions = [
     }
 ]
 
-
+function optionClicked(event) {
+    if (event.value === questions[i].answer) {
+        score.textContent = score + 10;
+        i++;
+    } else {
+        i++
+        secondsLeft.textContent = "Time left: " + secondsLeft - 5;
+    }
+  
+}
 
 //  need to hide game over screeen until end of game
 gameOverScreen.setAttribute("style", "display: none");
@@ -95,30 +105,21 @@ questionScreen.setAttribute("style", "display: block");
 
 askQuestion()
 function askQuestion() {
-var nextQuestion = document.querySelector("#questionSlide");
+    var nextQuestion = document.querySelector("#questionSlide");
     var options = document.querySelector("#options");
+    var i = 0;
     nextQuestion.textContent = questions[i].title
     options.children[0].textContent = questions[i].options[0];
     options.children[1].textContent = questions[i].options[1];
     options.children[2].textContent = questions[i].options[2];
     options.children[3].textContent = questions[i].options[3];
 
-    options.children[0].onclick = optionClicked;
-    options.children[1].onclick = optionClicked;
-    options.children[2].onclick = optionClicked;
-    options.children[3].onclick = optionClicked;
+    options.children[0].addEventListener('click', optionClicked);
+    options.children[1].addEventListener('click', optionClicked);
+    options.children[2].addEventListener('click', optionClicked);
+    options.children[3].addEventListener('click', optionClicked);
 
-    function optionClicked() {
-        if (options.children.value === questions[i].answer) {
-            score.textContent = score + 10;
-            i++;
-            askQuestion();
-        } else {
-            secondsLeft.textContent = "Time left: " + secondsLeft - 5;
-            askQuestion();
-        }
-      
-    }
+    
 }   
 
 
