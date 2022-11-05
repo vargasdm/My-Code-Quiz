@@ -105,22 +105,22 @@ questionScreen.setAttribute("style", "display: block");
 
       // need an event listener for game over screeen that when you submit your info
     // needs to store name data and score in local memory
-saveBtn.addEventListener("click", function(event) {
-    event.preventDefault();
-    saveLastGrade();
-    renderLastGrade();
-    });
+// saveBtn.addEventListener("click", function(event) {
+//     event.preventDefault();
+//     saveLastGrade();
+//     renderLastGrade();
+//     });
 
-    function saveLastGrade() {
-        // Save related form data as an object
-        var playerId = initials.value;
+//     function saveLastGrade() {
+//         // Save related form data as an object
+//         var playerId = initials.value;
         
-        // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
-        localStorage.setItem("playerId", JSON.stringify(playerId));
+//         // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
+//         localStorage.setItem("playerId", JSON.stringify(playerId));
 
-        console.log(playerId);
-    }
-}
+//         console.log(playerId);
+//     }
+// }
 
 
 
