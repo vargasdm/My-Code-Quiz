@@ -7,7 +7,7 @@ var saveBtn = document.querySelector("#saveBtn");
 var score = document.querySelector("#score");
 var highscores = document.querySelector("#highscores"); 
 var secondsLeft = 10;
-
+var i = 0;
 
 
 // question array that will be moved through ass you answer them
@@ -65,6 +65,7 @@ var questions = [
 ]
 
 function optionClicked(event) {
+    console.log(questions[0].answer);
     if (event.value === questions[i].answer) {
         score.textContent = score + 10;
         i++;
@@ -107,7 +108,7 @@ askQuestion()
 function askQuestion() {
     var nextQuestion = document.querySelector("#questionSlide");
     var options = document.querySelector("#options");
-    var i = 0;
+    
     nextQuestion.textContent = questions[i].title
     options.children[0].textContent = questions[i].options[0];
     options.children[1].textContent = questions[i].options[1];
