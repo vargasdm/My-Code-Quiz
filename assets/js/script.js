@@ -5,9 +5,8 @@ var questionScreen = document.querySelector("#askQuestion")
 var initials = document.querySelector("#initials");
 var saveBtn = document.querySelector("#saveBtn");
 var score = document.querySelector("#score");
-var highscores = document.querySelector("#highscores");
+var highscores = document.querySelector("#highscores"); 
 var secondsLeft = 10;
-
 var i = 0;
 
 // question array that will be moved through ass you answer them
@@ -63,6 +62,7 @@ var questions = [
         answer: "console.log"
     }
 ]
+
 
 
 //  need to hide game over screeen until end of game
@@ -167,9 +167,9 @@ saveBtn.addEventListener("click", function(event) {
 
         console.log(playerId);
     }
+
+
 }
-
-
 
 
 
@@ -200,3 +200,11 @@ startBtn.addEventListener("click", startGame);
 //     highscores.textContent = playerId.value;
 // }
 
+// optionsEl.onclick = questionClick
+
+// function questionClick(event){
+//     var btnEl = event.target
+//     console.log(btnEl)
+//   }
+
+// var optionsEl = document.querySelector("#btnEl");
