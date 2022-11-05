@@ -5,10 +5,10 @@ var questionScreen = document.querySelector("#askQuestion")
 var initials = document.querySelector("#initials");
 var saveBtn = document.querySelector("#saveBtn");
 var score = document.querySelector("#score");
-var highscores = document.querySelector("#oldScores")
+var highScores = document.querySelector("#oldScores")
 var instructions = document.querySelector("#instructions")
 var finalScore = document.querySelector("#finalScore")
-var playAgainBtn = document.querySelector("#playAgaintBtn");
+var playAgainBtn = document.querySelector("#playAgainBtn");
 var secondsLeft = 50;
 var i = 0;
 var scoreNum = 0;
@@ -73,7 +73,7 @@ var questions = [
 //  need to hide game over screeen until end of game
 gameOverScreen.setAttribute("style", "display: none");
 questionScreen.setAttribute("style", "display: none");
-instructions.textContent = "instructions: Click Sart Game button to begin. For every question you get correct, you get 10 points. For every wrong answer, 5 seconds are deducted from the timer."
+instructions.textContent = "Instructions: Click Sart Game button to begin. For every question you get correct, you get 10 points. For every wrong answer, 5 seconds are deducted from the timer."
  
 function startGame() {
     // need to start timer when start game function is started
@@ -180,14 +180,24 @@ function startGame() {
     
     function saveLastScore() {
         // Save related form data as an object
+        
+        var highScores = JSON.parse(localStorage.getItem("newScore")) || [];
         var newScore = { initial: initials.value, score: scoreNum }
+        highScores.push(newScore);
         // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
-        localStorage.setItem("newScore", JSON.stringify(newScore));
+        localStorage.setItem("newScore", JSON.stringify(highScores));
+
+        // for (var i = 0; i < highScores.length; i++){
+        //     var liEl = document.createElement('li');
+        //     liEl.appendChild(highScores)
+        // }
     }
 
     function highScoresDisplay() {
-        var highscores = JSON.parse(localStorage.getItem("playerId"));
-        highscores.textContent = playerId;
+            var highScores = JSON.parse(localStorage.getItem("newScore"));
+            highScores.textContent = playerId;
+            
+
     }
 
     saveBtn.addEventListener("click", function (event) {
@@ -204,11 +214,12 @@ function startGame() {
 // want an event listener that starts the game function when the button is clicked
 startBtn.addEventListener("click", startGame);
 
-playAgainBtn.addEventListener("click", startGame);
+playAgainBtn.addEventListener("click", function(){
+    window.location.reload()
+});
 
 
-
-
+// var liEl = document.createElement('li').textContent = highScores
 
 
 
@@ -234,4 +245,14 @@ playAgainBtn.addEventListener("click", startGame);
 //     console.log(btnEl)
 //   }
 
-// var optionsEl = document.querySelector("#btnEl");
+// var optionsEl = document.querySelector("#btnEl")
+
+// var highScores
+
+// function saveLastScore() {   
+//     // Save related form data as an object    
+//    var newScore = { initial: initials.value, score: scoreNum } 
+//     var storedScores = JSON.parse(localStorage.getItem("newScore")) || []
+// storedScores.push(newScore     
+//  localStorage.setItem("newScore", JSON.stringify(storedScores));  
+//  }
