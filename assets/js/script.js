@@ -84,7 +84,7 @@ questionScreen.setAttribute("style", "display: block");
 // need a function that renders a question and answers
     // answers need to be list items that are presented as buttons
         // want to create each question as an object variable
-            // want all of the answers to be properties that have the value of either true or false             (should boolean be held in data attribute or s it fine to set the property as the answer)
+            // want all of the answers to be properties that have the value of either true or false           
                 // should put every question variable into an array
 
     // needs to render "correct" or "incorrect" you after you click an answer
@@ -100,19 +100,21 @@ var nextQuestion = document.querySelector("#questionSlide");
     options.children[1].textContent = questions[i].options[1];
     options.children[2].textContent = questions[i].options[2];
     options.children[3].textContent = questions[i].options[3];
+
+    startBtn.addEventListener("click", function(event) {
+        if (event.target.value === questions[i].answer) {
+            score.textContent = score + 10;
+            i++;
+            askQuestion();
+        } else {
+            secondsLeft.textContent = "Time left: " + secondsLeft - 5;
+            askQuestion();
+        }
+      
+    })
 }   
 
-startBtn.addEventListener("click", function(event) {
-    if (event.target.value === questions[i].answer) {
-        score.textContent = score + 10;
-        i++;
-        askQuestion();
-    } else {
-        secondsLeft.textContent = "Time left: " + secondsLeft - 5;
-        askQuestion();
-    }
-  
-})
+
 
 // need a function for a timer
     // need timer to subract time when incorrect answer is chosen           
