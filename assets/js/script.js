@@ -8,6 +8,7 @@ var score = document.querySelector("#score");
 var highscores = document.querySelector("#oldScores")
 var instructions = document.querySelector("#instructions")
 var finalScore = document.querySelector("#finalScore")
+var playAgainBtn = document.querySelector("#playAgaintBtn");
 var secondsLeft = 50;
 var i = 0;
 var scoreNum = 0;
@@ -180,16 +181,15 @@ function startGame() {
     function saveLastScore() {
         // Save related form data as an object
         var playerId = initials.value;
-
+        var newScore = { initial: initials.value, score: 34 }
         // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
-        localStorage.setItem("playerId", JSON.stringify(playerId));
-
+        localStorage.setItem("newScore", JSON.stringify(newScore));
         console.log(playerId);
     }
 
     function highScoresDisplay() {
         var highscores = JSON.parse(localStorage.getItem("playerId"));
-        highscores.textContent = playerId.value;
+        highscores.textContent = playerId;
     }
 
     saveBtn.addEventListener("click", function (event) {
@@ -205,6 +205,8 @@ function startGame() {
 
 // want an event listener that starts the game function when the button is clicked
 startBtn.addEventListener("click", startGame);
+
+playAgainBtn.addEventListener("click", startGame);
 
 
 
