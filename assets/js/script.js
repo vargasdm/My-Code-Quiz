@@ -64,17 +64,7 @@ var questions = [
     }
 ]
 
-function optionClicked(event) {
-    console.log(questions[0].answer);
-    if (event.value === questions[i].answer) {
-        score.textContent = score + 10;
-        i++;
-    } else {
-        i++
-        secondsLeft.textContent = "Time left: " + secondsLeft - 5;
-    }
-  
-}
+
 
 //  need to hide game over screeen until end of game
 gameOverScreen.setAttribute("style", "display: none");
@@ -120,9 +110,30 @@ function askQuestion() {
     options.children[2].addEventListener('click', optionClicked);
     options.children[3].addEventListener('click', optionClicked);
 
-    
+  
 }   
 
+function optionClicked(event) {
+    var i = 0;
+    if (event.value === questions[i].answer) {
+        score.textContent = score + 10;
+        i++;
+        console.log(questions[0].answer);
+    } else {
+        i++
+        secondsLeft.textContent = "Time left: " + secondsLeft - 5;
+    }
+  
+    if (i < 5) {
+        askQuestion();
+    } else {
+        gameOverScreen.setAttribute("style", "display: block");
+            // hides timer
+        timeEl.setAttribute("style", "display: none");
+            // hides question screen
+        questionScreen.setAttribute("style", "display: none");
+    }
+}
 
 
 // need a function for a timer
