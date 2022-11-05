@@ -4,7 +4,9 @@ var gameOverScreen = document.querySelector("#gameOver")
 var questionScreen = document.querySelector("#askQuestion")
 var initials = document.querySelector("#initials");
 var saveBtn = document.querySelector("#saveBtn");
-var secondsLeft = 2;
+var secondsLeft = 30;
+var score = document.querySelector("#score");
+var i = 0;
 
 // question array that will be moved through ass you answer them
 var questions = [
@@ -69,12 +71,48 @@ function startGame() {
 // need to start timer when start game function is started
 setTime();
 
+// set score = 0
+score.textContent = "Score: " + 0;
+
 // need start button to disapper when startGame function starts
 startBtn.setAttribute("style", "display: none");
 
 // need to display questions when start game function is started
 // questionDisplay();
 questionScreen.setAttribute("style", "display: block");
+
+// need a function that renders a question and answers
+    // answers need to be list items that are presented as buttons
+        // want to create each question as an object variable
+            // want all of the answers to be properties that have the value of either true or false             (should boolean be held in data attribute or s it fine to set the property as the answer)
+                // should put every question variable into an array
+
+    // needs to render "correct" or "incorrect" you after you click an answer
+    // the sstring will be rendered at the bottom or under element that holds the answeers 
+        // create a function for this ??
+
+askQuestion()
+function askQuestion() {
+var nextQuestion = document.querySelector("#questionSlide");
+    var options = document.querySelector("#options");
+    nextQuestion.textContent = questions[i].title
+    options.children[0].textContent = questions[i].options[0];
+    options.children[1].textContent = questions[i].options[1];
+    options.children[2].textContent = questions[i].options[2];
+    options.children[3].textContent = questions[i].options[3];
+}   
+
+startBtn.addEventListener("click", function(event) {
+    if (event.target.value === questions[i].answer) {
+        score.textContent = score + 10;
+        i++;
+        askQuestion();
+    } else {
+        secondsLeft.textContent = "Time left: " + secondsLeft - 5;
+        askQuestion();
+    }
+  
+})
 
 // need a function for a timer
     // need timer to subract time when incorrect answer is chosen           
@@ -85,7 +123,6 @@ questionScreen.setAttribute("style", "display: block");
           secondsLeft--;
           timeEl.textContent = "Time left: " + secondsLeft;
       
-        // if ()   
 
           //  when timer hits 0, it shows the game over screen
         if(secondsLeft === 0 || questions === questions[questions.length-1]) {
@@ -134,15 +171,7 @@ startBtn.addEventListener("click", startGame);
 
 
 
-// need a function that renders a question and answers
-    // answers need to be list items that are presented as buttons
-        // want to create each question as an object variable
-            // want all of the answers to be properties that have the value of either true or false             (should boolean be held in data attribute or s it fine to set the property as the answer)
-                // should put every question variable into an array
 
-    // needs to render "correct" or "incorrect" you after you click an answer
-    // the sstring will be rendered at the bottom or under element that holds the answeers 
-        // create a function for this ??
 
 
     // after a question is answered correctly the score needs to increase
