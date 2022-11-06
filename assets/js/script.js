@@ -5,7 +5,7 @@ var questionScreen = document.querySelector("#askQuestion")
 var initials = document.querySelector("#initials");
 var saveBtn = document.querySelector("#saveBtn");
 var score = document.querySelector("#score");
-var highScores = document.querySelector("#oldScores")
+// var highScores = document.querySelector("#oldScores")
 var instructions = document.querySelector("#instructions")
 var finalScore = document.querySelector("#finalScore")
 var playAgainBtn = document.querySelector("#playAgainBtn");
@@ -202,17 +202,20 @@ function startGame() {
     // function that stores player IDs and scores to the local storage and renders all past scores
     function saveLastScore() {
         // variable used to store the player ID and their score
-        var newScore = { initials: initials.value, score: scoreNum }
-        
+        var newScore = { initial: initials.value, score: scoreNum }
+
+        // stringifies newScore entry and stores the entries in the local storage
+        localStorage.setItem("newScore", JSON.stringify(newScore));
+
         // variable that retreives newScore data and puts it into an array
         var highScores = JSON.parse(localStorage.getItem("newScore")) || [];
         
         // adds every newScore entry to the end of the highscores array 
         highScores.push(newScore);
+       
+    }
 
-        // stringifies newScore entry and stores the entries in the local storage
-        localStorage.setItem("newScore", JSON.stringify(highScores));
-
+    function renderPastScores() { 
         // loops through the newScores in the local storage and renders them in an newly created <li> on page
         for (var i = 0; i < highScores.length; i++){
             var liEl = document.createElement('li');
@@ -225,6 +228,7 @@ function startGame() {
     saveBtn.addEventListener("click", function (event) {
         event.preventDefault();
         saveLastScore();
+        renderPastScores();
     });
 }
 
