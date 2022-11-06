@@ -5,16 +5,14 @@ var questionScreen = document.querySelector("#askQuestion")
 var initials = document.querySelector("#initials");
 var saveBtn = document.querySelector("#saveBtn");
 var score = document.querySelector("#score");
-var oldScores = document.querySelector("#oldScores")
 var instructions = document.querySelector("#instructions")
 var finalScore = document.querySelector("#finalScore")
 var playAgainBtn = document.querySelector("#playAgainBtn");
 var scoreList = document.querySelector("#scoreList");
+var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
 var secondsLeft = 30;
 var i = 0;
 var scoreNum = 0;
-var highscoresArr = []
-var highscores = highscoresArr;
 
 // object array that holds quiz questions
 var questions = [
@@ -109,10 +107,10 @@ function startGame() {
     // starts timer and shows first question when start game function is called
     setTime();
     askQuestion()
-    
+
     // hides instructions when the startGame function is executed
     instructions.setAttribute("style", "display: none");
-    
+
     // set score = 0
     score.textContent = "Score: " + 0;
 
@@ -121,7 +119,7 @@ function startGame() {
 
     // displays questions when startGame function is executed
     questionScreen.setAttribute("style", "display: block");
-           
+
     // Timer function
     function setTime() {
         var timerInterval = setInterval(function () {
@@ -140,7 +138,7 @@ function startGame() {
 
         }, 1000);
     }
-  
+
     // function that renders a question and answers (options)
     function askQuestion() {
         var nextQuestion = document.querySelector("#questionSlide");
@@ -148,7 +146,7 @@ function startGame() {
 
         // changes the textContent of the header tag to the corresponding title value in the quiestions object array
         nextQuestion.textContent = questions[i].title
-        
+
         // changes the textContent of the appropriate button element in html to the corresponding options value in the questions object array
         options.children[0].textContent = questions[i].options[0];
         options.children[1].textContent = questions[i].options[1];
@@ -164,7 +162,7 @@ function startGame() {
 
     function optionClicked(event) {
         // if statement that determines whether or not the textContent of the option clicked is the same as teh answer property in th corresponding answer value in the questions object array
-            // if equal, then 10 points is added to score and index is incrimented
+        // if equal, then 10 points is added to score and index is incrimented
         if (event.target.textContent === questions[i].answer) {
             scoreNum = scoreNum + 10;
             score.textContent = "Score: " + scoreNum;
@@ -177,7 +175,7 @@ function startGame() {
         }
 
         // if statement that determines whether of not there are any onjects left in teh questions array
-            // if there are questions left in the array, then the askQuestion function is executed again
+        // if there are questions left in the array, then the askQuestion function is executed again
         if (i < questions.length) {
             askQuestion();
             // if there aren't any questions left in the array, then run endQuiz function and show game over screen
@@ -185,7 +183,7 @@ function startGame() {
             quizEnd()
         }
     }
- 
+
     // Function that shows game over screen
     function quizEnd() {
         // makes elements associated with the game over screen visible
@@ -193,53 +191,41 @@ function startGame() {
 
         // shows final score
         finalScore.textContent = "Final Score: " + scoreNum;
-        
+
         // hides timer
-        timeEl.setAttribute("style", "display: none");      
-        
+        timeEl.setAttribute("style", "display: none");
+
         // hides question screen
         questionScreen.setAttribute("style", "display: none");
     }
 
     // function that stores player IDs and scores to the local storage and renders all past scores
     function saveLastScore() {
-     
+        // variable used to store the player ID and their score
         var newScore = { initial: initials.value, score: scoreNum }
-        console.log(newScore);
 
+        // stringifies newScore entry and stores the entries in the newScore key in the local storage
         localStorage.setItem("newScore", JSON.stringify(newScore));
 
+        //  if statement that determines in any info is entered into the form
         if (initials !== "") {
 
-            highscoresArr = JSON.parse(localStorage.getItem("highscores")) || [];   
-            
+            // creates variable that will either grab the values in the highscores key in the local storage or if there isn't anyt values in that key, it will creat an empty array
+            var highscoresArr = JSON.parse(localStorage.getItem("highscores")) || [];
 
+            // adds newScore values into the empty array  or highscores array
             highscoresArr.push(newScore);
         }
 
+        // sets the values in the highscore key in local storage to the values in the highscoreArray
         localStorage.setItem("highscores", JSON.stringify(highscoresArr));
-
-        
-
-        // // variable used to store the player ID and their score
-        // var newScore = { initial: initials.value, score: scoreNum }
-
-        // // stringifies newScore entry and stores the entries in the local storage
-        // localStorage.setItem("newScore", JSON.stringify(newScore));
-
-        // // variable that retreives newScore data and puts it into an array
-        // var highScores = JSON.parse(localStorage.getItem("newScore")) || [];
-        
-        // // adds every newScore entry to the end of the highscores array 
-        // highScores.push(newScore);
-       
     }
 
-    function renderPastScores() { 
-        // loops through the highscoreArr in the highscore key in the local storage and renders them in an newly created <li> on page
-        for (var i = 0; i < highscores.length; i++){
+    function renderPastScores() {
+        // loops through the values in highscores array in the highscore key in the local storage if there is one and renders them in an newly created <li> in <ul> of HTML
+        for (var i = 0; i < highscores.length; i++) {
             var liEl = document.createElement('li');
-            liEl.innerText = highscores[i].initial + "  " + highScores[i].score
+            liEl.innerText = highscores[i].initial + "  " + highscores[i].score
             scoreList.appendChild(liEl);
         }
     }
@@ -256,6 +242,6 @@ function startGame() {
 startBtn.addEventListener("click", startGame);
 
 // click eventListener that reloads page when clicked
-playAgainBtn.addEventListener("click", function(){
+playAgainBtn.addEventListener("click", function () {
     window.location.reload()
 });
