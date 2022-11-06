@@ -4,11 +4,9 @@
     font-weight: bold;
 }
 
-
 #timer, #score, #instructions {
     font-size: larger;
 }
-
 
 #options button {
     height: 100px;
