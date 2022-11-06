@@ -13,7 +13,7 @@ var feedback = document.querySelector("#feedback");
 var nextQuestion = document.querySelector("#questionSlide");
 var options = document.querySelector("#options");
 var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
-var secondsLeft = 30;
+var secondsLeft = 5;
 var i = 0;
 var scoreNum = 0;
 
@@ -144,10 +144,6 @@ function startGame() {
 
     // function that renders a question and answers (options)
     function askQuestion() {
-        
-        
-        nextQuestion.innerHTML = "";
-        options.innerHTML = "";
         // changes the textContent of the header tag to the corresponding title value in the quiestions object array
         nextQuestion.textContent = questions[i].title
 
@@ -166,26 +162,23 @@ function startGame() {
 
     function optionClicked(event) {
         // if statement that determines whether or not the textContent of the option clicked is the same as teh answer property in th corresponding answer value in the questions object array
-        // if equal, then 10 points is added to score and index is incrimented
+        // if equal, then 10 points is added to score, "Correct" is displayed, and index is incrimented
         if (event.target.textContent === questions[i].answer) {
-            i++;
             scoreNum = scoreNum + 10;
             score.textContent = "Score: " + scoreNum;
-            var pEl = document.createElement('p');
-            pEl.innerText = "Feedback: Correct";
-            feedback.appendChild(pEl);
-            // if not equal, 5 seconds is subracted from the secondsLeft variable
+            feedback.textContent = "Feedback: Correct"
+            i++;
+            
+            // if not equal, 5 seconds is subracted from the secondsLeft variable and "Inorrect" is displayed,
         } else {
-            i++
             secondsLeft = secondsLeft - 5;
             secondsLeft.textContent = "Time left: " + secondsLeft;
-            var pEl = document.createElement('p');
-            pEl.innerText = "Feedback: Incorrect"
-            feedback.appendChild(pEl);
+            feedback.textContent = "Feedback: Incorrect"
+            i++
         }
         
         // feedback.setAttribute("style", "display: none");
-        // if statement that determines whether of not there are any onjects left in teh questions array
+        // if statement that determines whether or not there are any onjects left in teh questions array
         // if there are questions left in the array, then the askQuestion function is executed again
         if (i < questions.length) {
             // feedback.setAttribute("style", "display: none");
