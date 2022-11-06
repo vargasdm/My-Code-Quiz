@@ -9,6 +9,7 @@ var highScores = document.querySelector("#oldScores")
 var instructions = document.querySelector("#instructions")
 var finalScore = document.querySelector("#finalScore")
 var playAgainBtn = document.querySelector("#playAgainBtn");
+var scoreList = document.querySelector("#scoreList");
 var secondsLeft = 50;
 var i = 0;
 var scoreNum = 0;
@@ -190,20 +191,21 @@ function startGame() {
         for (var i = 0; i < highScores.length; i++){
             var liEl = document.createElement('li');
             liEl.innerText = highScores[i].initial + "  " + highScores[i].score
+            scoreList.appendChild(liEl);
         }
     }
 
-    function highScoresDisplay() {
-            var highScores = JSON.parse(localStorage.getItem("newScore"));
-            highScores.textContent = playerId;
+    // function highScoresDisplay() {
+    //         var highScores = JSON.parse(localStorage.getItem("newScore"));
+    //         // highScores.textContent = playerId;
             
 
-    }
+    // }
 
     saveBtn.addEventListener("click", function (event) {
         event.preventDefault();
         saveLastScore();
-        highScoresDisplay();
+        // highScoresDisplay();
 
     });
 
