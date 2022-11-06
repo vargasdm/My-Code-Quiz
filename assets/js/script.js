@@ -180,17 +180,14 @@ function startGame() {
             feedback.textContent = "Feedback: Incorrect"
             i++
         }
-    }
-
-    // if statement that determines whether or not there are any onjects left in teh questions array
-
-    if (i < questions.length) {
-        // if there are questions left in the array, then the askQuestion function is executed again
-        askQuestion();
-        
-    } else {
-        // if there aren't any questions left in the array, then run endQuiz function and show game over screen
-        quizEnd()
+        // if statement that determines whether or not there are any onjects left in teh questions array
+        if (i < questions.length) {
+            // if there are questions left in the array, then the askQuestion function is executed again
+            askQuestion();
+        } else {
+            // if there aren't any questions left in the array, then run endQuiz function and show game over screen
+            quizEnd()
+        }
     }
 }
 
