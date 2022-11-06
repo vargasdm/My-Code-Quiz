@@ -5,7 +5,7 @@ var questionScreen = document.querySelector("#askQuestion")
 var initials = document.querySelector("#initials");
 var saveBtn = document.querySelector("#saveBtn");
 var score = document.querySelector("#score");
-// var highScores = document.querySelector("#oldScores")
+var oldScores = document.querySelector("#oldScores")
 var instructions = document.querySelector("#instructions")
 var finalScore = document.querySelector("#finalScore")
 var playAgainBtn = document.querySelector("#playAgainBtn");
@@ -13,6 +13,8 @@ var scoreList = document.querySelector("#scoreList");
 var secondsLeft = 30;
 var i = 0;
 var scoreNum = 0;
+var highscoresArr = []
+var highscores = highscoresArr;
 
 // object array that holds quiz questions
 var questions = [
@@ -201,7 +203,7 @@ function startGame() {
 
     // function that stores player IDs and scores to the local storage and renders all past scores
     function saveLastScore() {
-        // var newScore = initials.value.trim()
+     
         var newScore = { initial: initials.value, score: scoreNum }
         console.log(newScore);
 
@@ -209,8 +211,9 @@ function startGame() {
 
         if (initials !== "") {
 
-            var highscoresArr = JSON.parse(localStorage.getItem("highscores")) || [];   
+            highscoresArr = JSON.parse(localStorage.getItem("highscores")) || [];   
             
+
             highscoresArr.push(newScore);
         }
 
@@ -233,10 +236,10 @@ function startGame() {
     }
 
     function renderPastScores() { 
-        // loops through the newScores in the local storage and renders them in an newly created <li> on page
-        for (var i = 0; i < highScores.length; i++){
+        // loops through the highscoreArr in the highscore key in the local storage and renders them in an newly created <li> on page
+        for (var i = 0; i < highscores.length; i++){
             var liEl = document.createElement('li');
-            liEl.innerText = highScores[i].initial + "  " + highScores[i].score
+            liEl.innerText = highscores[i].initial + "  " + highScores[i].score
             scoreList.appendChild(liEl);
         }
     }
