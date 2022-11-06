@@ -180,17 +180,17 @@ function startGame() {
     
     function saveLastScore() {
         // Save related form data as an object
-        
-        var highScores = JSON.parse(localStorage.getItem("newScore")) || [];
         var newScore = { initial: initials.value, score: scoreNum }
+        var highScores = JSON.parse(localStorage.getItem("newScore")) || [];
+        
         highScores.push(newScore);
         // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
         localStorage.setItem("newScore", JSON.stringify(highScores));
 
-        // for (var i = 0; i < highScores.length; i++){
-        //     var liEl = document.createElement('li');
-        //     liEl.appendChild(highScores)
-        // }
+        for (var i = 0; i < highScores.length; i++){
+            var liEl = document.createElement('li');
+            liEl.innerText = highScores[i].initial + "  " + highScores[i].score
+        }
     }
 
     function highScoresDisplay() {
