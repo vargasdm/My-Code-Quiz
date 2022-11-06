@@ -1,8 +1,40 @@
-/* style buttons */
+* {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    font-weight:bold;
+}
 
-/* style headers, questions, answers */
-    /* center them */
+/* #instructions {
+    font-weight:bold;
+} */
 
-/* place the timer in the top right */
+#timer {
+    font-size: larger;
+}
 
-/* place link to highscores in the top left */
+#score {
+    font-size: larger;
+}
+
+#options button {
+    height: 100px;
+    width: 200px;
+}
+
+/* #name, #initials, form button {
+    height: 36px;
+    width: 183px;
+}
+
+form textarea {
+    margin-top: 20px
+} */
+
+ul {
+    text-align: center;
+    list-style-position: inside;
+}
+
+button a {
+    text-decoration: none;
+}

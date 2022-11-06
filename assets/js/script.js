@@ -103,8 +103,7 @@ var questions = [
 //  need to hide game over screeen until end of game
 gameOverScreen.setAttribute("style", "display: none");
 questionScreen.setAttribute("style", "display: none");
-instructions.textContent = "Instructions: Click Sart Game button to begin. For every question you get correct, you get 10 points. For every wrong answer, 5 seconds are deducted from the timer."
- 
+instructions.setAttribute("style", "font-size: 20px");
 function startGame() {
     // need to start timer when start game function is started
     setTime();
@@ -224,17 +223,11 @@ function startGame() {
         }
     }
 
-    // function highScoresDisplay() {
-    //         var highScores = JSON.parse(localStorage.getItem("newScore"));
-    //         // highScores.textContent = playerId;
-            
-
-    // }
 
     saveBtn.addEventListener("click", function (event) {
         event.preventDefault();
         saveLastScore();
-        // highScoresDisplay();
+  
 
     });
 
