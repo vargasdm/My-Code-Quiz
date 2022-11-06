@@ -13,7 +13,7 @@ During this project I learned:
 - how to store data in teh local storage and then retreive and rander that data later
 - how to use an eventListener to reload my page
 
-![Screenshot](https://github.com/vargasdm/Password-Generator/blob/main/assets/images/password-generator.jpg)
+![Screenshot]([https://github.com/vargasdm/Password-Generator/blob/main/assets/images/password-generator.jpg](https://github.com/vargasdm/My-Code-Quiz/blob/main/assets/images/code-quiz.jpg))
 
 ## Table of Contents
 
@@ -26,14 +26,13 @@ During this project I learned:
 When the Play Gamre buttom is pressed, a timer is started andthe user is presented with a question. When the user clicks an answer button, they will be given feedback as to whether they are correct or incorrect. If they were correct, 10 points is added to their current score, a feedback message saying "Correct" will appear at the bottom of the question, and the next question is displayed. If they were incorrect, 5 seconds is subtracted from the timer, a feedback message saying "Incorrect" will appear at the bottom of the question, and the next question is displayed. When the timer reaches 0 or all of the questions have been answered, a game over screen is displayed. This screen shows the user their final score, has a form to submit your Id, and a play again button that will reload the page. When the user clicks submit, their ID and score will be stored and past Ids and scores will be displayed.
 
 There is no istallation required. The project can be viewed at through the following link: https://vargasdm.github.io/My-Code-Quiz/.
-The GitHub repository can be viewed at https://github.com/vargasdm/Password-Generator
+The GitHub repository can be viewed at https://github.com/vargasdm/My-Code-Quiz
 
-![Screenshot](https://github.com/vargasdm/Password-Generator/blob/main/assets/images/password-generator-prompt1.jpg)
-![Screenshot](https://github.com/vargasdm/Password-Generator/blob/main/assets/images/password-generator-prompt2.jpg)
-![Screenshot](https://github.com/vargasdm/Password-Generator/blob/main/assets/images/password-generator-prompt3.jpg)
-![Screenshot](https://github.com/vargasdm/Password-Generator/blob/main/assets/images/password-generator-prompt4.jpg)
-![Screenshot](https://github.com/vargasdm/Password-Generator/blob/main/assets/images/password-generator-prompt5.jpg)
-![Screenshot](https://github.com/vargasdm/Password-Generator/blob/main/assets/images/password-generator-result.jpg)
+![Screenshot]([https://github.com/vargasdm/Password-Generator/blob/main/assets/images/password-generator-prompt1.jpg](https://github.com/vargasdm/My-Code-Quiz/blob/main/assets/images/code-quiz-question.jpg))
+![Screenshot]([https://github.com/vargasdm/Password-Generator/blob/main/assets/images/password-generator-prompt2.jpg](https://github.com/vargasdm/My-Code-Quiz/blob/main/assets/images/code-quiz-question-feedbackandscore.jpg))
+![Screenshot]([https://github.com/vargasdm/Password-Generator/blob/main/assets/images/password-generator-prompt3.jpg](https://github.com/vargasdm/My-Code-Quiz/blob/main/assets/images/code-quiz-game-over.jpg))
+![Screenshot]([https://github.com/vargasdm/Password-Generator/blob/main/assets/images/password-generator-prompt4.jpg](https://github.com/vargasdm/My-Code-Quiz/blob/main/assets/images/code-quiz-save-and-render.jpg))
+
 
 ## Credits
 
