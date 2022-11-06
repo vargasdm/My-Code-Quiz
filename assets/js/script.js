@@ -14,7 +14,6 @@ var secondsLeft = 50;
 var i = 0;
 var scoreNum = 0;
 
-
 // question array that will be moved through ass you answer them
 var questions = [
     {
@@ -66,6 +65,36 @@ var questions = [
             "console.log"
         ],
         answer: "console.log"
+    },
+    {
+        title: "Which of the following keywords is used to define a variable in Javascript?",
+        options: [
+            "var",
+            "let",
+            "function",
+            "console.log"
+        ],
+        answer: "var"
+    },
+    {
+        title: "Which of the following methods is used to access HTML elements using Javascript?",
+        options: [
+            "getElementById()",
+            "getElementByClassName()",
+            "all of the above",
+            "none of the above"
+        ],
+        answer: "all of the above"
+    },
+    {
+        title: "Which function is used to serialize an object into a JSON string in Javascript?",
+        options: [
+            "stringify()",
+            "parse()",
+            "convert()",
+            "none of the above"
+        ],
+        answer: "stringify()"
     }
 ]
 
