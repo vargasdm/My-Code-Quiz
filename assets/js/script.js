@@ -162,7 +162,7 @@ function startGame() {
             secondsLeft.textContent = "Time left: " + secondsLeft;
         }
 
-        if (i < 5) {
+        if (i < questions.length) {
             askQuestion();
         } else {
             quizEnd()
