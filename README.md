@@ -1,6 +1,6 @@
 # My-Code-Quiz
 
-##Description
+## Description
 
 The purpose of this project was to create a quiz that contains multiple choice questions about Javascript fundamentals. The motivation for this project was to create an app that I could use to test my Javascript fundamental knowledge.
 
@@ -53,7 +53,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#:~:text=The%20HTML%20element%20(,should%20indicate%20the%20link's%20destination.
 https://www.w3schools.com/jsref/met_element_remove.asp
 
-##License
+## License
 
 No licenses were used during this project.
 
