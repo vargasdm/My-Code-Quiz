@@ -9,6 +9,7 @@ var instructions = document.querySelector("#instructions")
 var finalScore = document.querySelector("#finalScore")
 var playAgainBtn = document.querySelector("#playAgainBtn");
 var scoreList = document.querySelector("#scoreList");
+var feedback = document.querySelector("#feedback");
 var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
 var secondsLeft = 30;
 var i = 0;
@@ -164,19 +165,27 @@ function startGame() {
         // if statement that determines whether or not the textContent of the option clicked is the same as teh answer property in th corresponding answer value in the questions object array
         // if equal, then 10 points is added to score and index is incrimented
         if (event.target.textContent === questions[i].answer) {
+            i++;
             scoreNum = scoreNum + 10;
             score.textContent = "Score: " + scoreNum;
-            i++;
+            var pEl = document.createElement('p');
+            pEl.innerText = "Feedback: Correct";
+            feedback.appendChild(pEl);
             // if not equal, 5 seconds is subracted from the secondsLeft variable
         } else {
             i++
             secondsLeft = secondsLeft - 5;
             secondsLeft.textContent = "Time left: " + secondsLeft;
+            var pEl = document.createElement('p');
+            pEl.innerText = "Feedback: Incorrect"
+            feedback.appendChild(pEl);
         }
-
+        
+        // feedback.setAttribute("style", "display: none");
         // if statement that determines whether of not there are any onjects left in teh questions array
         // if there are questions left in the array, then the askQuestion function is executed again
         if (i < questions.length) {
+            // feedback.setAttribute("style", "display: none");
             askQuestion();
             // if there aren't any questions left in the array, then run endQuiz function and show game over screen
         } else {
