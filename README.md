@@ -13,7 +13,7 @@ During this project I learned:
 - how to store data in the local storage and then retreive and rander that data later
 - how to use an eventListener to reload my page
 
-![Screenshot](https://github.com/vargasdm/My-Code-Quiz/blob/main/assets/images/code-quiz.jpg))
+![Screenshot](https://github.com/vargasdm/My-Code-Quiz/blob/main/assets/images/code-quiz.jpg)
 
 ## Table of Contents
 
@@ -28,10 +28,10 @@ When the Play Gamre buttom is pressed, a timer is started andthe user is present
 There is no istallation required. The project can be viewed at through the following link: https://vargasdm.github.io/My-Code-Quiz/.
 The GitHub repository can be viewed at https://github.com/vargasdm/My-Code-Quiz
 
-![Screenshot](https://github.com/vargasdm/My-Code-Quiz/blob/main/assets/images/code-quiz-question.jpg))
-![Screenshot](https://github.com/vargasdm/My-Code-Quiz/blob/main/assets/images/code-quiz-question-feedbackandscore.jpg))
-![Screenshot](https://github.com/vargasdm/My-Code-Quiz/blob/main/assets/images/code-quiz-game-over.jpg))
-![Screenshot](https://github.com/vargasdm/My-Code-Quiz/blob/main/assets/images/code-quiz-save-and-render.jpg))
+![Screenshot](https://github.com/vargasdm/My-Code-Quiz/blob/main/assets/images/code-quiz-question.jpg)
+![Screenshot](https://github.com/vargasdm/My-Code-Quiz/blob/main/assets/images/code-quiz-question-feedbackandscore.jpg)
+![Screenshot](https://github.com/vargasdm/My-Code-Quiz/blob/main/assets/images/code-quiz-game-over.jpg)
+![Screenshot](https://github.com/vargasdm/My-Code-Quiz/blob/main/assets/images/code-quiz-save-and-render.jpg)
 
 
 ## Credits
