@@ -202,7 +202,7 @@ function startGame() {
     // function that stores player IDs and scores to the local storage and renders all past scores
     function saveLastScore() {
         // variable used to store the player ID and their score
-        var newScore = { initial: initials.value, score: scoreNum }
+        var newScore = { initials: initials.value, score: scoreNum }
         
         // variable that retreives newScore data and puts it into an array
         var highScores = JSON.parse(localStorage.getItem("newScore")) || [];
