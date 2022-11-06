@@ -13,7 +13,8 @@ var feedback = document.querySelector("#feedback");
 var nextQuestion = document.querySelector("#questionSlide");
 var options = document.querySelector("#options");
 var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
-var secondsLeft = 5;
+var timerInterval;
+var secondsLeft = 60;
 var i = 0;
 var scoreNum = 0;
 
@@ -101,7 +102,6 @@ var questions = [
     }
 ]
 
-
 // initially hides game over screen and question screen
 gameOverScreen.setAttribute("style", "display: none");
 questionScreen.setAttribute("style", "display: none");
@@ -125,7 +125,7 @@ function startGame() {
 
     // Timer function
     function setTime() {
-        var timerInterval = setInterval(function () {
+        timerInterval = setInterval(function () {
             // secondsLeft variable will decrease by 1 every second
             secondsLeft--;
             // changes textContent of timer to update with the secondsLeft variable
@@ -162,86 +162,90 @@ function startGame() {
 
     function optionClicked(event) {
         // if statement that determines whether or not the textContent of the option clicked is the same as teh answer property in th corresponding answer value in the questions object array
-        // if equal, then 10 points is added to score, "Correct" is displayed, and index is incrimented
         if (event.target.textContent === questions[i].answer) {
+            // if equal, then 10 points is added to score, "Correct" is displayed, and index is incrimented
             scoreNum = scoreNum + 10;
             score.textContent = "Score: " + scoreNum;
             feedback.textContent = "Feedback: Correct"
             i++;
-            
-            // if not equal, 5 seconds is subracted from the secondsLeft variable and "Inorrect" is displayed,
+
+        } else if (secondsLeft <= 5) {
+            // if there are less than 5 seconds left, stop timer and show game over screen
+            clearInterval(timerInterval);
+            quizEnd();
         } else {
+            // if not equal, 5 seconds is subracted from the secondsLeft variable and "Inorrect" is displayed,
             secondsLeft = secondsLeft - 5;
             secondsLeft.textContent = "Time left: " + secondsLeft;
             feedback.textContent = "Feedback: Incorrect"
             i++
         }
-        
-        // feedback.setAttribute("style", "display: none");
-        // if statement that determines whether or not there are any onjects left in teh questions array
+    }
+
+    // if statement that determines whether or not there are any onjects left in teh questions array
+
+    if (i < questions.length) {
         // if there are questions left in the array, then the askQuestion function is executed again
-        if (i < questions.length) {
-            // feedback.setAttribute("style", "display: none");
-            askQuestion();
-            // if there aren't any questions left in the array, then run endQuiz function and show game over screen
-        } else {
-            quizEnd()
-        }
+        askQuestion();
+        
+    } else {
+        // if there aren't any questions left in the array, then run endQuiz function and show game over screen
+        quizEnd()
     }
-
-    // Function that shows game over screen
-    function quizEnd() {
-        // makes elements associated with the game over screen visible
-        gameOverScreen.setAttribute("style", "display: block");
-
-        // shows final score
-        finalScore.textContent = "Final Score: " + scoreNum;
-
-        // hides timer
-        timeEl.setAttribute("style", "display: none");
-
-        // hides question screen
-        questionScreen.setAttribute("style", "display: none");
-    }
-
-    // function that stores player IDs and scores to the local storage and renders all past scores
-    function saveLastScore() {
-        // variable used to store the player ID and their score
-        var newScore = { initial: initials.value, score: scoreNum }
-
-        // stringifies newScore entry and stores the entries in the newScore key in the local storage
-        localStorage.setItem("newScore", JSON.stringify(newScore));
-
-        //  if statement that determines in any info is entered into the form
-        if (initials !== "") {
-
-            // creates variable that will either grab the values in the highscores key in the local storage or if there isn't anyt values in that key, it will creat an empty array
-            var highscoresArr = JSON.parse(localStorage.getItem("highscores")) || [];
-
-            // adds newScore values into the empty array  or highscores array
-            highscoresArr.push(newScore);
-        }
-
-        // sets the values in the highscore key in local storage to the values in the highscoreArray
-        localStorage.setItem("highscores", JSON.stringify(highscoresArr));
-    }
-
-    function renderPastScores() {
-        // loops through the values in highscores array in the highscore key in the local storage if there is one and renders them in an newly created <li> in <ul> of HTML
-        for (var i = 0; i < highscores.length; i++) {
-            var liEl = document.createElement('li');
-            liEl.innerText = highscores[i].initial + "  " + highscores[i].score
-            scoreList.appendChild(liEl);
-        }
-    }
-
-    // click eventListener for a form element that when save button is clicked, saveLastScore function is executed
-    saveBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-        saveLastScore();
-        renderPastScores();
-    });
 }
+
+// Function that shows game over screen
+function quizEnd() {
+    // makes elements associated with the game over screen visible
+    gameOverScreen.setAttribute("style", "display: block");
+
+    // shows final score
+    finalScore.textContent = "Final Score: " + scoreNum;
+
+    // hides timer
+    timeEl.setAttribute("style", "display: none");
+
+    // hides question screen
+    questionScreen.setAttribute("style", "display: none");
+}
+
+// function that stores player IDs and scores to the local storage and renders all past scores
+function saveLastScore() {
+    // variable used to store the player ID and their score
+    var newScore = { initial: initials.value, score: scoreNum }
+
+    // stringifies newScore entry and stores the entries in the newScore key in the local storage
+    localStorage.setItem("newScore", JSON.stringify(newScore));
+
+    //  if statement that determines in any info is entered into the form
+    if (initials !== "") {
+
+        // creates variable that will either grab the values in the highscores key in the local storage or if there isn't anyt values in that key, it will creat an empty array
+        var highscoresArr = JSON.parse(localStorage.getItem("highscores")) || [];
+
+        // adds newScore values into the empty array  or highscores array
+        highscoresArr.push(newScore);
+    }
+
+    // sets the values in the highscore key in local storage to the values in the highscoreArray
+    localStorage.setItem("highscores", JSON.stringify(highscoresArr));
+}
+
+function renderPastScores() {
+    // loops through the values in highscores array in the highscore key in the local storage if there is one and renders them in an newly created <li> in <ul> of HTML
+    for (var i = 0; i < highscores.length; i++) {
+        var liEl = document.createElement('li');
+        liEl.innerText = highscores[i].initial + "  " + highscores[i].score
+        scoreList.appendChild(liEl);
+    }
+}
+
+// click eventListener for a form element that when save button is clicked, saveLastScore function is executed
+saveBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    saveLastScore();
+    renderPastScores();
+});
 
 // click eventListener that executes startGame function when clicked
 startBtn.addEventListener("click", startGame);
