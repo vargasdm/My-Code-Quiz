@@ -1,34 +1,19 @@
 * {
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
-    font-weight:bold;
+    font-weight: bold;
 }
 
-/* #instructions {
-    font-weight:bold;
-} */
 
-#timer {
+#timer, #score, #instructions {
     font-size: larger;
 }
 
-#score {
-    font-size: larger;
-}
 
 #options button {
     height: 100px;
     width: 200px;
 }
-
-/* #name, #initials, form button {
-    height: 36px;
-    width: 183px;
-}
-
-form textarea {
-    margin-top: 20px
-} */
 
 ul {
     text-align: center;

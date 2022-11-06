@@ -10,11 +10,11 @@ var instructions = document.querySelector("#instructions")
 var finalScore = document.querySelector("#finalScore")
 var playAgainBtn = document.querySelector("#playAgainBtn");
 var scoreList = document.querySelector("#scoreList");
-var secondsLeft = 50;
+var secondsLeft = 30;
 var i = 0;
 var scoreNum = 0;
 
-// question array that will be moved through ass you answer them
+// object array that holds quiz questions
 var questions = [
     {
         title: "Commonly used data types DO NOT include:",
@@ -99,123 +99,121 @@ var questions = [
 ]
 
 
-
-//  need to hide game over screeen until end of game
+// initially hides game over screen and question screen
 gameOverScreen.setAttribute("style", "display: none");
 questionScreen.setAttribute("style", "display: none");
-instructions.setAttribute("style", "font-size: 20px");
+
 function startGame() {
-    // need to start timer when start game function is started
+    // starts timer and shows first question when start game function is called
     setTime();
+    askQuestion()
+    
+    // hides instructions when the startGame function is executed
     instructions.setAttribute("style", "display: none");
+    
     // set score = 0
     score.textContent = "Score: " + 0;
 
-    // need start button to disapper when startGame function starts
+    // start button disappers when startGame function is executed
     startBtn.setAttribute("style", "display: none");
 
-    // need to display questions when start game function is started
-    // questionDisplay();
+    // displays questions when startGame function is executed
     questionScreen.setAttribute("style", "display: block");
+           
+    // Timer function
+    function setTime() {
+        var timerInterval = setInterval(function () {
+            // secondsLeft variable will decrease by 1 every second
+            secondsLeft--;
+            // changes textContent of timer to update with the secondsLeft variable
+            timeEl.textContent = "Time left: " + secondsLeft;
 
-    // need a function that renders a question and answers
-    // answers need to be list items that are presented as buttons
-    // want to create each question as an object variable
-    // want all of the answers to be properties that have the value of either true or false           
-    // should put every question variable into an array
+            //  when timer hits 0 or user has moved through all questions in questions array, then quizEnd function is ran
+            if (secondsLeft === 0 || questions === questions[questions.length - 1]) {
+                // stops execution of action at set interval
+                clearInterval(timerInterval);
+                // calls function to show game over screen 
+                quizEnd()
+            }
 
-    // needs to render "correct" or "incorrect" you after you click an answer
-    // the sstring will be rendered at the bottom or under element that holds the answeers 
-    // create a function for this ??
+        }, 1000);
+    }
   
-
-    askQuestion()
+    // function that renders a question and answers (options)
     function askQuestion() {
         var nextQuestion = document.querySelector("#questionSlide");
         var options = document.querySelector("#options");
 
+        // changes the textContent of the header tag to the corresponding title value in the quiestions object array
         nextQuestion.textContent = questions[i].title
+        
+        // changes the textContent of the appropriate button element in html to the corresponding options value in the questions object array
         options.children[0].textContent = questions[i].options[0];
         options.children[1].textContent = questions[i].options[1];
         options.children[2].textContent = questions[i].options[2];
         options.children[3].textContent = questions[i].options[3];
 
+        // creates a click eventListenter for every options choice where when clicked the optionClicked function will execute
         options.children[0].addEventListener('click', optionClicked);
         options.children[1].addEventListener('click', optionClicked);
         options.children[2].addEventListener('click', optionClicked);
         options.children[3].addEventListener('click', optionClicked);
-
-
     }
 
     function optionClicked(event) {
-        console.log(event.target.textContent)
+        // if statement that determines whether or not the textContent of the option clicked is the same as teh answer property in th corresponding answer value in the questions object array
+            // if equal, then 10 points is added to score and index is incrimented
         if (event.target.textContent === questions[i].answer) {
             scoreNum = scoreNum + 10;
             score.textContent = "Score: " + scoreNum;
             i++;
-
+            // if not equal, 5 seconds is subracted from the secondsLeft variable
         } else {
             i++
             secondsLeft = secondsLeft - 5;
             secondsLeft.textContent = "Time left: " + secondsLeft;
         }
 
+        // if statement that determines whether of not there are any onjects left in teh questions array
+            // if there are questions left in the array, then the askQuestion function is executed again
         if (i < questions.length) {
             askQuestion();
+            // if there aren't any questions left in the array, then run endQuiz function and show game over screen
         } else {
             quizEnd()
-            
         }
     }
-
-
-
-    // need a function for a timer
-    // need timer to subract time when incorrect answer is chosen           
-
-    function setTime() {
-        // Sets interval in variable
-        var timerInterval = setInterval(function () {
-            secondsLeft--;
-            timeEl.textContent = "Time left: " + secondsLeft;
-
-
-            //  when timer hits 0, it shows the game over screen
-            if (secondsLeft === 0 || questions === questions[questions.length - 1]) {
-                // Stops execution of action at set interval
-                clearInterval(timerInterval);
-                // Calls function to show game over screen 
-                quizEnd()
-                
-            }
-
-        }, 1000);
-    }
-
+ 
+    // Function that shows game over screen
     function quizEnd() {
+        // makes elements associated with the game over screen visible
         gameOverScreen.setAttribute("style", "display: block");
+
+        // shows final score
         finalScore.textContent = "Final Score: " + scoreNum;
-        // hides timer1
-        timeEl.setAttribute("style", "display: none");  
+        
+        // hides timer
+        timeEl.setAttribute("style", "display: none");      
+        
         // hides question screen
         questionScreen.setAttribute("style", "display: none");
-
-        
     }
 
-    // need an event listener for game over screeen that when you submit your info
-    // needs to store name data and score in local memory
-    
+    // function that stores player IDs and scores to the local storage and renders all past scores
     function saveLastScore() {
-        // Save related form data as an object
+        // variable used to store the player ID and their score
         var newScore = { initial: initials.value, score: scoreNum }
+        
+        // variable that retreives newScore data and puts it into an array
         var highScores = JSON.parse(localStorage.getItem("newScore")) || [];
         
+        // adds every newScore entry to the end of the highscores array 
         highScores.push(newScore);
-        // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
+
+        // stringifies newScore entry and stores the entries in the local storage
         localStorage.setItem("newScore", JSON.stringify(highScores));
 
+        // loops through the newScores in the local storage and renders them in an newly created <li> on page
         for (var i = 0; i < highScores.length; i++){
             var liEl = document.createElement('li');
             liEl.innerText = highScores[i].initial + "  " + highScores[i].score
@@ -223,60 +221,17 @@ function startGame() {
         }
     }
 
-
+    // click eventListener for a form element that when save button is clicked, saveLastScore function is executed
     saveBtn.addEventListener("click", function (event) {
         event.preventDefault();
         saveLastScore();
-  
-
     });
-
 }
 
-
-
-// want an event listener that starts the game function when the button is clicked
+// click eventListener that executes startGame function when clicked
 startBtn.addEventListener("click", startGame);
 
+// click eventListener that reloads page when clicked
 playAgainBtn.addEventListener("click", function(){
     window.location.reload()
 });
-
-
-// var liEl = document.createElement('li').textContent = highScores
-
-
-
-
-
-    // after a question is answered correctly the score needs to increase
-    // timer to deduct time when incorrect answer is chosen
-        // write a function for this ??????
-
-    // when all questions are answered, i want to be brought to the game over screen
-
-
-
-// need a function for when the highscore button is clicked
-    // it will need to grab the previous highscores and naems from the local storage and present them on the page
-    // need to hide other windows and just display past highscores
-
-
-// optionsEl.onclick = questionClick
-
-// function questionClick(event){
-//     var btnEl = event.target
-//     console.log(btnEl)
-//   }
-
-// var optionsEl = document.querySelector("#btnEl")
-
-// var highScores
-
-// function saveLastScore() {   
-//     // Save related form data as an object    
-//    var newScore = { initial: initials.value, score: scoreNum } 
-//     var storedScores = JSON.parse(localStorage.getItem("newScore")) || []
-// storedScores.push(newScore     
-//  localStorage.setItem("newScore", JSON.stringify(storedScores));  
-//  }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,63 +8,43 @@
     <link rel="stylesheet" href="assets\css\style.css">
     <title>Daniel's Code Quiz</title>
 </head>
+
 <body>
-    <header class = "header">
+    <header class="header">
         <h1>Daniel's Code Quiz</h1>
-        <p id = "instructions">"Instructions: Click Sart Game button to begin. For every question you get correct, you get 10 points. For every wrong answer, 5 seconds are deducted from the timer."</p>
-        <p id = "timer"></p>
-        <button id = "startBtn">Start Game</button>
+        <p id="instructions">"Instructions: Click Sart Game button to begin. For every question you get correct, you get
+            10 points. For every wrong answer, 5 seconds are deducted from the timer."</p>
+        <p id="timer"></p>
+        <button id="startBtn">Start Game</button>
     </header>
 
     <div>
-        
-        <div id = "askQuestion">
-            <div id = "score"></div>
-            <h2 id = "questionSlide">Question</h2>
-        
-            <div id = "options">
+
+        <div id="askQuestion">
+            <div id="score"></div>
+            <h2 id="questionSlide"></h2>
+
+            <div id="options">
                 <button></button>
                 <button></button>
                 <button></button>
                 <button></button>
             </div>
         </div>
-        <div id = "gameOver">
-            <h3 id = "finalScore"></h3>
+        <div id="gameOver">
+            <h3 id="finalScore"></h3>
             <form>
-                <label>Name: </label>
-                <textarea id = initials></textarea>
-                <button id = "saveBtn">Save</button>
+                <label id="name">Name: </label>
+                <textarea id=initials></textarea>
+                <button id="saveBtn">Save</button>
             </form>
-            <div id = oldScores>
-                <ul id ="scoreList">Past Scores:</ul>
+            <div id=oldScores>
+                <ul id="scoreList">Past Scores:</ul>
             </div>
-            <button id = "playAgainBtn"><a href="#">Play again</a></button>
+            <button id="playAgainBtn"><a href="#">Play again</a></button>
         </div>
     </div>
     <script src="assets\js\script.js"></script>
 </body>
+
 </html>
-
-
-
-<!-- I want a start screen that has-->
-    <!--title -->
-    <!--instructions -->
-        <!-- title and instructions can be in wone element -->
-    <!--start button -->
-
-<!-- I want a highscore link at the top left that brings you to the previous highscores -->
-    <!--  I want htis to always be present before, during and after quiz -->
-
-<!-- want an element for when the questions come up -->
-    <!-- has a title which holds the question -->
-    <!-- has list elements that have the answers  -->
-        <!-- will need this the have a btn class? -->
-
-        <!-- I want a timer in the top right -->
-    <!--  I want this to be present only during the quiz -->
-
-<!-- I want an game over screen -->
-    <!-- it should have your score as a title -->
-    <!-- it should have a form so that you are able to submit your initials -->
