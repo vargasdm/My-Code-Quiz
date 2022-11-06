@@ -214,7 +214,7 @@ function startGame() {
             highscoresArr.push(newScore);
         }
 
-        localStorage.setItem("highscores", JSON.stringify(newScore));
+        localStorage.setItem("highscores", JSON.stringify(highscoresArr));
 
         
 
