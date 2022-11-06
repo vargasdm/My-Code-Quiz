@@ -10,6 +10,8 @@ var finalScore = document.querySelector("#finalScore")
 var playAgainBtn = document.querySelector("#playAgainBtn");
 var scoreList = document.querySelector("#scoreList");
 var feedback = document.querySelector("#feedback");
+var nextQuestion = document.querySelector("#questionSlide");
+var options = document.querySelector("#options");
 var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
 var secondsLeft = 30;
 var i = 0;
@@ -142,9 +144,10 @@ function startGame() {
 
     // function that renders a question and answers (options)
     function askQuestion() {
-        var nextQuestion = document.querySelector("#questionSlide");
-        var options = document.querySelector("#options");
-
+        
+        
+        nextQuestion.innerHTML = "";
+        options.innerHTML = "";
         // changes the textContent of the header tag to the corresponding title value in the quiestions object array
         nextQuestion.textContent = questions[i].title
 
