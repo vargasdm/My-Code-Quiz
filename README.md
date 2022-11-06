@@ -10,7 +10,7 @@ During this project I learned:
 - how to change the text of an element using .textContent method
 - how to create html elements in JS using .createElement method
 - how to access data related to a click event
-- how to store data in teh local storage and then retreive and rander that data later
+- how to store data in the local storage and then retreive and rander that data later
 - how to use an eventListener to reload my page
 
 ![Screenshot]([https://github.com/vargasdm/Password-Generator/blob/main/assets/images/password-generator.jpg](https://github.com/vargasdm/My-Code-Quiz/blob/main/assets/images/code-quiz.jpg))
