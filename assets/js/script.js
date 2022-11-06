@@ -201,17 +201,34 @@ function startGame() {
 
     // function that stores player IDs and scores to the local storage and renders all past scores
     function saveLastScore() {
-        // variable used to store the player ID and their score
+        // var newScore = initials.value.trim()
         var newScore = { initial: initials.value, score: scoreNum }
+        console.log(newScore);
 
-        // stringifies newScore entry and stores the entries in the local storage
         localStorage.setItem("newScore", JSON.stringify(newScore));
 
-        // variable that retreives newScore data and puts it into an array
-        var highScores = JSON.parse(localStorage.getItem("newScore")) || [];
+        if (initials !== "") {
+
+            var highscoresArr = JSON.parse(localStorage.getItem("highscores")) || [];   
+            
+            highscoresArr.push(newScore);
+        }
+
+        localStorage.setItem("highscores", JSON.stringify(newScore));
+
         
-        // adds every newScore entry to the end of the highscores array 
-        highScores.push(newScore);
+
+        // // variable used to store the player ID and their score
+        // var newScore = { initial: initials.value, score: scoreNum }
+
+        // // stringifies newScore entry and stores the entries in the local storage
+        // localStorage.setItem("newScore", JSON.stringify(newScore));
+
+        // // variable that retreives newScore data and puts it into an array
+        // var highScores = JSON.parse(localStorage.getItem("newScore")) || [];
+        
+        // // adds every newScore entry to the end of the highscores array 
+        // highScores.push(newScore);
        
     }
 
