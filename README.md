@@ -2,24 +2,31 @@
 
 ##Description
 
-The purpose of this project was to create a timed quiz that I could use to test my Javascript fundamental knowledge.
+The purpose of this project was to create a quiz that contains multiple choice questions about Javascript fundamentals. The motivation for this project was to create an app that I could use to test my Javascript fundamental knowledge.
 
-The purpose of this project was to make our client a password generator that would randomly generate a password based on criteria selected by the user. This project was made in order to create strong passwords for better security and solve the problem of having to think of a strong password used for sensitive information on your own.
-
-During this project I learned: how and when to call javascript variables and functions, if statements, for loops, accessing and manipulating global object properties using Javascript, how to randomly select a number, and the use of eventlistener.
+During this project I learned: 
+- how to traverse the DOM and accesses html elements
+- how to alter html elements in JS using .setAttribute method
+- how to change the text of an element using .textContent method
+- how to create html elements in JS using .createElement method
+- how to access data related to a click event
+- how to store data in teh local storage and then retreive and rander that data later
+- how to use an eventListener to reload my page
 
 ![Screenshot](https://github.com/vargasdm/Password-Generator/blob/main/assets/images/password-generator.jpg)
 
-## Table of Contents (Optional)
+## Table of Contents
 
-- [Installation](#installation)
 - [Usage](#usage)
 - [Credits](#credits)
 - [License](#license)
 
 ##Usage
 
-When the generate password button is clicked, the user will be  presented with 5 prompts: length of the password that will be generated, whether to include uppercase, lowercase, numbers, and special characters. After at least one of the prompts are selected, a randomly generated string of characters matching the criteria that the user selected. There is no istallation required. The project can be viewed at through the following link: https://vargasdm.github.io/Password-Generator/. The GitHub repository can be viewed at https://github.com/vargasdm/Password-Generator
+When the Play Gamre buttom is pressed, a timer is started andthe user is presented with a question. When the user clicks an answer button, they will be given feedback as to whether they are correct or incorrect. If they were correct, 10 points is added to their current score, a feedback message saying "Correct" will appear at the bottom of the question, and the next question is displayed. If they were incorrect, 5 seconds is subtracted from the timer, a feedback message saying "Incorrect" will appear at the bottom of the question, and the next question is displayed. When the timer reaches 0 or all of the questions have been answered, a game over screen is displayed. This screen shows the user their final score, has a form to submit your Id, and a play again button that will reload the page. When the user clicks submit, their ID and score will be stored and past Ids and scores will be displayed.
+
+There is no istallation required. The project can be viewed at through the following link: https://vargasdm.github.io/My-Code-Quiz/.
+The GitHub repository can be viewed at https://github.com/vargasdm/Password-Generator
 
 ![Screenshot](https://github.com/vargasdm/Password-Generator/blob/main/assets/images/password-generator-prompt1.jpg)
 ![Screenshot](https://github.com/vargasdm/Password-Generator/blob/main/assets/images/password-generator-prompt2.jpg)
@@ -32,15 +39,20 @@ When the generate password button is clicked, the user will be  presented with 5
 
 I followed these links and tutorials in the completion of this project:
 
-https://www.codecademy.com/forum_questions/51dd1d3b8c1cccf04a0028b3
-https://www.w3schools.com/jsref/jsref_concat_array.asp
-https://stackoverflow.com/questions/52553230/window-prompt-accept-only-numeric-values
-https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt
-https://stackoverflow.com/questions/36552735/javascript-prompt-while-input-is-not-a-number
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN
-https://stackoverflow.com/questions/66309901/appending-chars-into-a-string-in-c-with-a-for-loop
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-https://stackoverflow.com/questions/65746888/how-to-clear-a-variables-memory-after-the-function-is-called-the-first-time
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push
+https://www.w3schools.com/cssref/sel_id.php
+https://www.w3schools.com/css/css_align.asp
+https://www.w3schools.com/jsref/met_element_setattribute.asp
+https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute
+https://developer.mozilla.org/en-US/docs/Web/API/Storage/getItem
+https://www.w3schools.com/jsref/prop_node_textcontent.asp
+https://www.w3schools.com/jsref/event_target.asp
+https://www.javascripttutorial.net/dom/manipulating/create-a-dom-element/
+https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset_event
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#:~:text=The%20HTML%20element%20(,should%20indicate%20the%20link's%20destination.
+https://www.w3schools.com/jsref/met_element_remove.asp
 
 ##License
 
